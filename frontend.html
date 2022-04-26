@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+    #heading{
+        font-size: 30px;
+        text-align: center;
+        margin-bottom: 25px;
+        }
+    #container{
+        width: 90%;
+        display: grid;
+        margin: auto;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows: auto;
+        /* border: 1px solid red; */
+        gap : 25px;
+  }
+  #container>div{
+      margin-top: 20px;
+    padding: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 12px;
+  }
+  div>img:first-child{
+   border-top-left-radius: 12px;
+   border-top-right-radius: 12px;
+  }
+  p+img {
+      height : 60px;
+      width:  150px;
+      margin: auto;
+  }
+  h3{
+      font-size: 30px;
+      margin-top: 15px;
+  }
+  p{
+      font-size: 22px;
+      color: grey;
+      margin-top: 15px;
+      margin-bottom: 10px;
+  }
+
+</style>
+
+<body>
+    <div id = "heading"></div>
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+    var heading = document.createElement("h1")
+    heading.innerText = "Stratagic Investors";
+    document.querySelector("#heading").append(heading)
+
+    var investorData = JSON.parse(localStorage.getItem("lcData"))
+    console.log(JSON.parse(localStorage.getItem("lcData")))
+
+
+    investorData.forEach(function(elem){
+       var box = document.createElement("div");
+       var investor_avatar = document.createElement("img");
+       investor_avatar.setAttribute("src",elem.avatar)
+      var name = document.createElement("h3")
+      name.innerText = elem.name
+      var position = document.createElement("p")
+      position.innerText = elem.position
+      var logo = document.createElement("img");
+      logo.setAttribute("src",elem.logo)
+       box.append(investor_avatar,name,position,logo)
+       document.querySelector("#container").append(box);
+
+    })
+</script>
